@@ -78,7 +78,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m3mfs"]
@@ -86,7 +86,7 @@ radius = 7.0
 height = 16.0
 
 [node name="Player" type="Area2D"]
-position = Vector2(30, 38)
+position = Vector2(673, 657)
 scale = Vector2(2.5, 2.5)
 script = ExtResource("1_ije23")
 speed = 298
@@ -98,3 +98,5 @@ sprite_frames = SubResource("SpriteFrames_ep8hg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3.305)
 shape = SubResource("CapsuleShape2D_m3mfs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

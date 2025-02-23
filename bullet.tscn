@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cytfftcakf0xl"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_e8mt8"]
+[ext_resource type="Texture2D" uid="uid://xxgfhwtpykfs" path="res://assets/spritesheets/laser-bolts.png" id="2_4l823"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3uqb"]
+atlas = ExtResource("2_4l823")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dhvk"]
+atlas = ExtResource("2_4l823")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbsab"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3uqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dhvk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_17qu1"]
+radius = 3.16228
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_e8mt8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wbsab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.55, -6.305)
+shape = SubResource("CircleShape2D_17qu1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, 1.5)
+scale = Vector2(0.35, 1.15)
