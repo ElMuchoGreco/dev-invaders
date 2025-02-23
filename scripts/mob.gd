@@ -4,7 +4,6 @@ class_name Mob
 @export var BASE_SPEED = 100
 
 @onready var animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
-@onready var mob_spawn_location = get_tree().get_root().get_node("GameContainer").get_node("MobPath").get_node("MobSpawnLocation")
 
 var spawnPosition: Vector2
 var spawnRotation: float
