@@ -1,43 +1,65 @@
-[gd_scene load_steps=7 format=3 uid="uid://cytfftcakf0xl"]
+[gd_scene load_steps=10 format=3 uid="uid://cytfftcakf0xl"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_e8mt8"]
-[ext_resource type="Texture2D" uid="uid://xxgfhwtpykfs" path="res://assets/spritesheets/laser-bolts.png" id="2_4l823"]
+[ext_resource type="Texture2D" uid="uid://dxd7wu4xx3vsl" path="res://assets/spritesheets/ts-bullet.png" id="2_fs0cb"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g3uqb"]
-atlas = ExtResource("2_4l823")
-region = Rect2(0, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_87kpl"]
+atlas = ExtResource("2_fs0cb")
+region = Rect2(0, 0, 15, 15)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dhvk"]
-atlas = ExtResource("2_4l823")
-region = Rect2(16, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_sksd7"]
+atlas = ExtResource("2_fs0cb")
+region = Rect2(15, 0, 15, 15)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_wbsab"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8tno"]
+atlas = ExtResource("2_fs0cb")
+region = Rect2(30, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1rox"]
+atlas = ExtResource("2_fs0cb")
+region = Rect2(45, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bvdp"]
+atlas = ExtResource("2_fs0cb")
+region = Rect2(60, 0, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4dwnv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g3uqb")
+"texture": SubResource("AtlasTexture_87kpl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0dhvk")
+"texture": SubResource("AtlasTexture_sksd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8tno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1rox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bvdp")
 }],
 "loop": true,
 "name": &"default",
-"speed": 30.0
+"speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_17qu1"]
-radius = 3.16228
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbxab"]
+size = Vector2(15, 16)
 
 [node name="Bullet" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_e8mt8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_wbsab")
+sprite_frames = SubResource("SpriteFrames_4dwnv")
+frame = 4
+frame_progress = 0.405265
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.55, -6.305)
-shape = SubResource("CircleShape2D_17qu1")
+shape = SubResource("RectangleShape2D_wbxab")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.5, 1.5)
-scale = Vector2(0.35, 1.15)
+scale = Vector2(0.75, 0.775)

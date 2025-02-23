@@ -10,7 +10,6 @@ script = ExtResource("1_a2blf")
 position = Vector2(678, 658)
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
