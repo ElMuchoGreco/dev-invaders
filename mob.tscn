@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://yeaicxxxpldb"]
+[gd_scene load_steps=18 format=3 uid="uid://yeaicxxxpldb"]
 
 [ext_resource type="Script" path="res://scripts/mob.gd" id="1_bnkmn"]
 [ext_resource type="Shader" path="res://assets/shaders/damage.gdshader" id="2_3ck0e"]
-[ext_resource type="Texture2D" uid="uid://dpkpsyhvoh6v5" path="res://assets/spritesheets/enemy-small.png" id="2_dxe8r"]
+[ext_resource type="Texture2D" uid="uid://ds3saypkymxyg" path="res://assets/spritesheets/basic-redmine.png" id="3_5mvo5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8avrn"]
 resource_local_to_scene = true
@@ -16,26 +16,54 @@ shader = ExtResource("2_3ck0e")
 shader_parameter/flash_color = null
 shader_parameter/flash_value = null
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ou5ue"]
-atlas = ExtResource("2_dxe8r")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1owi1"]
+atlas = ExtResource("3_5mvo5")
+region = Rect2(0, 0, 80, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_arwj1"]
-atlas = ExtResource("2_dxe8r")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncvdn"]
+atlas = ExtResource("3_5mvo5")
+region = Rect2(80, 0, 80, 50)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_l2jvp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds630"]
+atlas = ExtResource("3_5mvo5")
+region = Rect2(160, 0, 80, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bslkt"]
+atlas = ExtResource("3_5mvo5")
+region = Rect2(0, 50, 80, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45rre"]
+atlas = ExtResource("3_5mvo5")
+region = Rect2(80, 50, 80, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t52r"]
+atlas = ExtResource("3_5mvo5")
+region = Rect2(160, 50, 80, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wdjae"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ou5ue")
+"texture": SubResource("AtlasTexture_1owi1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_arwj1")
+"texture": SubResource("AtlasTexture_ncvdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds630")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bslkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45rre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t52r")
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 4.0
 }]
 
 [sub_resource type="Animation" id="Animation_g47eh"]
@@ -69,18 +97,23 @@ tracks/0/keys = {
 "values": [null, 0.5, 1.0, 0.5, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_4eomr"]
+resource_name = "explosion"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_up7m5"]
 _data = {
 "RESET": SubResource("Animation_g47eh"),
-"damageFlash": SubResource("Animation_tqidy")
+"damageFlash": SubResource("Animation_tqidy"),
+"explosion": SubResource("Animation_4eomr")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81amy"]
-size = Vector2(16, 16)
+size = Vector2(80, 50)
 
 [node name="Mob" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_8avrn")
 position = Vector2(208, 122)
+scale = Vector2(0.5, 0.5)
 collision_mask = 0
 script = ExtResource("1_bnkmn")
 metadata/_edit_group_ = true
@@ -88,7 +121,8 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_5lcfi")
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_l2jvp")
+sprite_frames = SubResource("SpriteFrames_wdjae")
+frame_progress = 0.684816
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 libraries = {

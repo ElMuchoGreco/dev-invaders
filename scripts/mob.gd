@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Mob
 
-@export var BASE_SPEED = 100
+@export var BASE_SPEED = 70
 
 @onready var animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 
@@ -15,7 +15,7 @@ func _ready():
 	global_position = spawnPosition
 	global_rotation = spawnRotation
 	health = 3
-	speed = randf_range(BASE_SPEED, 3 * BASE_SPEED)
+	speed = randf_range(BASE_SPEED, 2.4 * BASE_SPEED)
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2(0, speed).rotated(spawnRotation)
@@ -27,7 +27,9 @@ func isHit():
 	if (health > 0):
 		animation_player.play("damageFlash")
 	if (health == 0):
+		$AnimatedSprite2D.stop()
 		queue_free()
+		
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
