@@ -1,15 +1,20 @@
 extends Area2D
 
+signal hit
+
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
+var attack_speed
 
-# Called when the node enters the scene tree for the first time.
+@onready var main = get_tree().get_root().get_node("GameContainer")
+@onready var bullet = load("res://bullet.tscn")
+
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Equivilent to update():
 func _process(delta: float) -> void:
 	$AnimatedSprite2D.play()
 	var velocity = Vector2.ZERO # The player's movement vector.
@@ -27,3 +32,14 @@ func _process(delta: float) -> void:
 		
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
+
+func shoot():
+	var bulletInstance = bullet.instantiate()
+	bulletInstance.spawnPosition = global_position
+	bulletInstance.spawnPosition.y -= 50
+	bulletInstance.spawnRotation = global_rotation
+	main.add_child.call_deferred(bulletInstance)
+
+func _on_body_entered(_body: Node2D) -> void:
+	hit.emit()
+	print("i am hit!")
